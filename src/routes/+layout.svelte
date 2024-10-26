@@ -1,7 +1,5 @@
 <script lang="ts">
-	import '../app.css';
+	import '../app.postcss';
 </script>
 
-
 <slot />
-<!-- Render child components here -->

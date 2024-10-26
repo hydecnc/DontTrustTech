@@ -1,71 +1,15 @@
-<script lang="ts">
-	import { goto } from '$app/navigation';
-	import { user } from '$lib/store';
+<!-- YOU CAN DELETE EVERYTHING IN THIS PAGE -->
 
-	let username: string = '';
-	let invalidInput: boolean = false;
-
-	const registerUser = async () => {
-        console.log(username)
-		if (username == '') {
-			invalidInput = true;
-			return -1;
-		}
-		user.set(username);
-		await goto('phishing');
-	};
-</script>
-
-<h1 id="dtt">Don't Trust Tech.</h1>
-
-<div class="userinput">
-	Enter your username here to get started:
-	<input placeholder="your username here" bind:value={username} />
+<div class="container h-full mx-auto flex justify-center items-center">
+	<div class="space-y-5">
+		<h1 class="h1">Let's get cracking bones!</h1>
+		<p>Start by exploring:</p>
+		<ul>
+			<li><code class="code">/src/routes/+layout.svelte</code> - barebones layout</li>
+			<li><code class="code">/src/app.postcss</code> - app wide css</li>
+			<li>
+				<code class="code">/src/routes/+page.svelte</code> - this page, you can replace the contents
+			</li>
+		</ul>
+	</div>
 </div>
-
-<div class="start">
-	<button on:click={registerUser} class="btn">I'm Ready</button>
-	{#if invalidInput}
-		<div class="warning">Please type in your username before proceeding!</div>
-	{/if}
-</div>
-
-<style>
-	#dtt {
-		font-size: 6em;
-		text-align: center;
-		margin-bottom: 8px;
-	}
-
-	.userinput {
-		font-size: 2em;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		flex-direction: column;
-		gap: 8px;
-	}
-
-	.userinput input {
-		padding: 4px;
-		font-size: medium;
-	}
-
-	.start {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-        flex-direction: column;
-	}
-
-	.start button {
-		font-size: 1.5rem;
-		font-weight: bold;
-		height: 3rem;
-		margin: 30px;
-	}
-
-	.warning {
-		color: red;
-	}
-</style>
