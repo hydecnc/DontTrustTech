@@ -37,6 +37,11 @@
 						>Website Sec. Checklist</a
 					>
 				</li>
+				<li>
+					<a href="/quiz" class={display} on:click={() => (sidebar = false)}
+						>Quiz</a
+					>
+				</li>
 			</ul>
 		{:else}
 			<button class="absolute top-4 right-4" on:click={() => (sidebar = true)}><Menu /></button>

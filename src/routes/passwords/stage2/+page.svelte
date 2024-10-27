@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { ModalSettings } from '@skeletonlabs/skeleton';
 	import { initializeStores, Modal, getModalStore } from '@skeletonlabs/skeleton';
+	import { goto } from '$app/navigation';
 
 	initializeStores();
 	const modalStore = getModalStore();
@@ -27,7 +28,7 @@
 	// Function to show the results modal
 	function showResultsModal(isSuccess: boolean, correctCount: number, feedback: string[]) {
 		const modal: ModalSettings = {
-			type: 'alert',
+			type: 'confirm',
 			title: isSuccess ? '🎉 Success!' : '📝 Results',
 			body: `<div class="space-y-4">
                     <p class="text-lg">
@@ -41,6 +42,11 @@
                 </div>`,
 			buttonTextCancel: 'Close',
 			modalClasses: 'w-modal',
+			response: (r: boolean) => {
+				if (r) {
+					goto('../safetycheck');
+				}
+			}
 		};
 
 		modalStore.trigger(modal);
