@@ -10,9 +10,9 @@
     /** Question bank */
     let questions = [
         {
-            question: "What is the highest tier title one can be bestowed?",
-            options: ["Alpha", "Sigma", "Beta", "Rizzler"],
-            answer: "Sigma",
+            question: "Which of these is the strongest password?",
+            options: ["12345", "Sunshine2024", "Tr3e$!N$torm!", "ilovecats"],
+            answer: "Tr3e$!N$torm!",
         },
         {
             question: "Is KSI thick of it song a banger or nah?",
@@ -95,6 +95,19 @@
             options: ["True", "False"],
             answer: "True",
         },
+        {
+            question:
+                "Phishing attacks can only happen through email and not other communication platforms",
+            options: ["True", "False"],
+            answer: "False",
+        },
+        {
+            question:
+                "Phishing emails often ask for personal information like passwords or credit card numbers",
+            options: ["True", "False"],
+            answer: "True",
+        }
+
     ];
 
     // Shuffle and select only 10 questions
