@@ -48,9 +48,11 @@
 </script>
 
 <div
-	class="flex justify-center items-center h-screen overflow-hidden"
+	class="flex justify-center items-center h-screen overflow-hidden flex-col gap-8"
 	style="transform: translateY({$offsetY}px);"
 >
+<h1 class="h1">Website Safety Checker</h1>
+<h3 class="h3">Should you trust them? If yes, what should you keep in mind?</h3>
 	<div
 		class={`w-96 transition-transform duration-400 ${isFocused ? 'scale-85' : ''} space-y-6`}
 		style="transition-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55);"
@@ -60,7 +62,7 @@
 			placeholder="What are you willing to check?"
 			on:focus={handleFocus}
 			on:blur={handleBlur}
-			class="w-full p-4 text-lg rounded-full border border-gray-300 outline-none transition duration-200 focus:border-blue-500 focus:shadow-md focus:shadow-blue-300/50
+			class="input variant-glass-primary w-full p-4 text-lg text-gray-200 rounded-full border border-gray-300 outline-none transition duration-200 focus:border-blue-500 focus:shadow-md focus:shadow-blue-300/50
       text-black"
 			on:input={handleInput}
 		/>
