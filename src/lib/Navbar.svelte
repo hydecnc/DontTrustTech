@@ -1,16 +1,16 @@
 <script lang="ts">
-	import Close from "$lib/assets/svg/Close.svelte";
-	import Menu from "$lib/assets/svg/Menu.svelte";
-	import { slide } from "svelte/transition";
-	import { sessionStore } from "./sessionstore";
-	import { get } from "svelte/store";
+	import Close from '$lib/assets/svg/Close.svelte';
+	import Menu from '$lib/assets/svg/Menu.svelte';
+	import { slide } from 'svelte/transition';
+	import { sessionStore } from './sessionstore';
+	import { get } from 'svelte/store';
 
 	const session = get(sessionStore);
 
 	let sidebar = false;
-	let display = "hidden";
+	let display = 'hidden';
 
-	$: display = session.userThere ? "block" : "hidden";
+	$: display = session.userThere ? 'block' : 'hidden';
 </script>
 
 <div id="navbar">
@@ -20,40 +20,26 @@
 				<button on:click={() => (sidebar = false)}><Close /></button>
 				<li><a href="/" on:click={() => (sidebar = false)}>Home</a></li>
 				<li>
-					<a
-						href="/phishing"
-						class={display}
-						on:click={() => (sidebar = false)}>Phishing</a
+					<a href="/phishing" class={display} on:click={() => (sidebar = false)}>Phishing</a>
+				</li>
+				<li>
+					<a href="/keylogger/resetpassword" class={display} on:click={() => (sidebar = false)}
+						>Keyloggers</a
 					>
 				</li>
 				<li>
-					<a
-						href="/keylogger/resetpassword"
-						class={display}
-						on:click={() => (sidebar = false)}>Keyloggers</a
+					<a href="/passwords/stage1" class={display} on:click={() => (sidebar = false)}
+						>Passwords</a
 					>
 				</li>
 				<li>
-					<a
-						href="/passwords"
-						class={display}
-						on:click={() => (sidebar = false)}>Passwords</a
-					>
-				</li>
-				<li>
-					<a
-						href="/safetycheck"
-						class={display}
-						on:click={() => (sidebar = false)}
+					<a href="/safetycheck" class={display} on:click={() => (sidebar = false)}
 						>Website Sec. Checklist</a
 					>
 				</li>
 			</ul>
 		{:else}
-			<button
-				class="absolute top-4 right-4"
-				on:click={() => (sidebar = true)}><Menu /></button
-			>
+			<button class="absolute top-4 right-4" on:click={() => (sidebar = true)}><Menu /></button>
 		{/if}
 	</nav>
 </div>

@@ -5,7 +5,7 @@ export class ResultObject {
     domain: string;
     description: string;
 
-    
+
     constructor(name: string, logo: string, address: string, description: string = '') {
         this.name = name;
         this.logo = logo;
@@ -13,6 +13,5 @@ export class ResultObject {
         this.description = description;
 
     }
-  }
+}
 
-  
