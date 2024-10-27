@@ -12,7 +12,7 @@ export async function getSites() {
 
         let domains = data.split("\n")
         // return data.split("\n")
-        console.log(domains)
+        // console.log(domains)
         // domainData.set = domains;
         let results: ResultObject[] = []
 
@@ -44,7 +44,7 @@ export async function getStringSites() {
     try {
         const response = await fetch("/websites.txt");
         const data = await response.text();
-        console.log(data)
+        // console.log(data)
 
         let domains = data.split("\n")
         // return data.split("\n")

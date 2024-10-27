@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { ResultObject } from './ResultObject';
-	import ollama from 'ollama';
+    import { huggy } from './huggingFace';
+	
 
 	export let result: ResultObject;
 	let name = result.name;
@@ -9,13 +10,10 @@
 	let logo = result.logo;
 	let description = result.description;
 
-	//ollama
-	import { browser } from '$app/environment';
-	import { talk } from './ollamaChat';
 
 	onMount(async () => {
-		talk();
-		console.log("I HATE MY LI")
+		huggy()
+		// console.log("I HATE MY LI")
 	});
 </script>
 

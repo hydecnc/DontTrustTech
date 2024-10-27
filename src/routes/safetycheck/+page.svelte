@@ -2,7 +2,7 @@
 	import { tweened } from 'svelte/motion';
 	import { cubicOut } from 'svelte/easing';
 	import { ResultObject } from '../../lib/ResultObject';
-	import Resultcomponent from '$lib/Resultcomponent.svelte';
+	import Resultcomponent from '$lib/ResultComponent.svelte';
 	import { searchSites } from '$lib/search';
 	import { get } from 'svelte/store';
 	import { domainStringData } from '$lib/domains_string';
