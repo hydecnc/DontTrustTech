@@ -57,7 +57,7 @@
 		align-items: flex-start;
 		justify-content: flex-start;
 		z-index: 99;
-		background-color: rgba(47, 0, 128, 0.363);
+		background-color: rgba(0, 92, 128, 0.363);
 		box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
 		backdrop-filter: blur(10px);
 		border-radius: 12px;

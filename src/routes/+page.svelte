@@ -1,8 +1,10 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { fade } from "svelte/transition";
-
+	
 	import { sessionStore } from "$lib/sessionstore";
+	import Title from "$lib/assets/svg/Title.svelte";
+	import GlitchedCanvas from '$lib/GlitchedCanvas.svelte';
 
 	let username: string = "";
 	let invalidInput: boolean = false;
@@ -16,12 +18,19 @@
 	};
 </script>
 
+<GlitchedCanvas />
 <div class="h-screen w-full flex flex-col justify-center items-center">
-	<h1
+	<!-- <h1
 		class="h1 text-center m-5 text-6xl text-transparent bg-clip-text bg-gradient-to-r from-sky-200 via-white to-indigo-200 [text-shadow:_0_1px_5px_rgb(255_255_255_/_20%)]"
 	>
 		Don't Trust Tech.
-	</h1>
+	</h1> -->
+	<!-- <h1
+		class="h1 text-center m-5 text-6xl text-transparent bg-clip-text bg-gradient-to-r from-green-200 via-white to-lime-200 [text-shadow:_0_1px_5px_rgb(255_255_255_/_20%)]"
+	>
+		Don't Trust Tech.
+	</h1> -->
+	<Title />
 	<div class="justify-center align-middle flex-col gap-2 text-center">
 		<!-- <div class="badge variant-ghost-warning my-4">
 			Make sure to turn your volume up for the best experience.
@@ -30,7 +39,7 @@
 			Enter your username here to get started:
 		</div>
 		<input
-			class="input p-2 text-base max-w-52 text-black"
+			class="input variant-ghost-primary p-2 text-base max-w-52 text-white"
 			placeholder="your username here"
 			bind:value={username}
 		/>
