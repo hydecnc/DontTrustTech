@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -137,43 +137,36 @@
     }
 </script>
 
-<main>
+<div class="text-center flex flex-col justify-center align-middle items-center">
     {#if !isQuizOver}
-        <h3>Question {currentQuestion + 1}</h3>
-        <h2>{shuffledQuestions[currentQuestion].question}</h2>
-        <div>
+        <h1 class="h1 my-8">Question {currentQuestion + 1}</h1>
+        <h2 class="h3 text-primary-400 mb-5 max-w-[75%]">
+            {shuffledQuestions[currentQuestion].question}
+        </h2>
+        <div class="space-y-2 self-center mb-8">
             {#each shuffledQuestions[currentQuestion].options as option}
-                <label>
+                <label class="space-x-2 flex items-start">
                     <input
                         type="radio"
+                        class="radio"
                         bind:group={selectedOption}
                         value={option}
                     />
-                    {option}
+                    <span class="ml-8">
+                        {option}
+                    </span>
                 </label>
             {/each}
         </div>
-        <button on:click={submitAnswer} disabled={!selectedOption}
-            >Submit</button
+        <button
+            on:click={submitAnswer}
+            disabled={!selectedOption}
+            class="btn variant-ghost-tertiary max-w-80">Submit</button
         >
     {:else}
-        <h2>Quiz Over!</h2>
-        <p>Your score is: {score} / {shuffledQuestions.length}</p>
-        <p>{getEndMessage()}</p>
-        <button on:click={resetQuiz}>Play Again</button>
+        <h1 class="h1 text-center my-6">Quiz Over!</h1>
+        <p class="text-2xl">Your score is: <strong>{score} / {shuffledQuestions.length}</strong></p>
+        <p class="text-xl my-5">{getEndMessage()}</p>
+        <button on:click={resetQuiz} class="btn variant-outline-tertiary text-xl">Play Again</button>
     {/if}
-</main>
-
-<style>
-    main {
-        font-family: Arial, sans-serif;
-        max-width: 400px;
-        margin: 20px auto;
-        text-align: center;
-    }
-
-    h3 {
-        font-size: 18px;
-        color: #555;
-    }
-</style>
+</div>
