@@ -102,8 +102,8 @@
 	</div>
 
 	<div class="flex justify-center gap-4 mt-4">
-		<button class="btn variant-filled-primary" on:click={submitButton}> Submit </button>
-		<button class="btn variant-filled-secondary" on:click={resetButton}> Reset </button>
+		<button class="btn variant-ghost-primary" on:click={submitButton}> Submit </button>
+		<button class="btn variant-ghost-secondary" on:click={resetButton}> Reset </button>
 	</div>
 </div>
 
