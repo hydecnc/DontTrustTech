@@ -5,32 +5,14 @@
         Modal,
         getModalStore,
     } from "@skeletonlabs/skeleton";
-    import type {
-        ModalSettings,
-        ModalComponent,
-        ModalStore,
-    } from "@skeletonlabs/skeleton";
+    import type { ModalSettings } from "@skeletonlabs/skeleton";
     import kiss from "$lib/assets/gif/kiss.gif";
-
-    const modalCorrect: ModalSettings = {
-        type: "alert",
-        // Data
-        title: "Example Alert",
-        body: "This is an example modal.",
-        image: "https://i.imgur.com/WOgTG96.gif",
-    };
-    const modalWrong: ModalSettings = {
-        type: "alert",
-        // Data
-        title: "This is a possible phishing email.",
-        body: "",
-        image: "https://i.imgur.com/WOgTG96.gif",
-    };
 
     initializeStores();
     const modalStore = getModalStore();
 
     let index = 0;
+    let next = false;
 
     const phishingEmail = {
         title: "Congratulations! You've Been Selected to Receive $200!",
@@ -96,8 +78,8 @@ Thank you, and I look forward to hearing from you soon!
             modalStore.trigger(modal);
         }
         index++;
-        console.log(index);
         if (index >= emails.length) {
+            next = true;
             return;
         }
         updateEmail(index);
@@ -107,6 +89,8 @@ Thank you, and I look forward to hearing from you soon!
     };
     updateEmail(0);
 </script>
+
+<h1 class="h1 text-center my-4">Email</h1>
 
 <Email title={email.title} message={email.content} />
 
@@ -118,6 +102,11 @@ Thank you, and I look forward to hearing from you soon!
             checkReponse();
         }}>Check Email</button
     >
+    {#if next}
+        <a href="keylogger/resetpassword">
+            <button class="btn variant-outline-secondary mr">Next</button>
+        </a>
+    {/if}
 </div>
 
 <style lang="postcss">
