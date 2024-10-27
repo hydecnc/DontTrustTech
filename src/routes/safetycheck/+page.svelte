@@ -1,68 +1,73 @@
 <script lang="ts">
-  import { tweened } from 'svelte/motion';
-  import { cubicOut } from 'svelte/easing';
+	import { tweened } from 'svelte/motion';
+	import { cubicOut } from 'svelte/easing';
+	import { ResultObject } from '../../lib/ResultObject';
+	import Resultcomponent from '$lib/Resultcomponent.svelte';
+	import { searchSites } from '$lib/search';
+	import { get } from 'svelte/store';
+	import { domainStringData } from '$lib/domains_string';
 
-  // State to control input focus
-  let isFocused = false;
 
-  // Tweened value to smoothly animate vertical movement
-  let offsetY = tweened(0, { duration: 400, easing: cubicOut });
+	let isFocused: boolean = false;
+	let offsetY = tweened<number>(0, { duration: 400, easing: cubicOut });
 
-  // Handle focus and blur events
-  function handleFocus() {
-    isFocused = true;
-    offsetY.set(-100); // Move up smoothly when focused
-  }
+	function handleFocus(): void {
+		isFocused = true;
+		offsetY.set(-100);
+	}
 
-  function handleBlur() {
-    isFocused = false;
-    offsetY.set(0); // Return to original position when blurred
-  }
+	function handleBlur(): void {
+		isFocused = false;
+		offsetY.set(0);
+	}
+
+	let items: string[] = [];
+	let top: string[] = [];
+	let topObjects: ResultObject[] = [];
+
+	async function handleInput(e: Event) {
+		let domainStringD = await get(domainStringData);
+
+		if (domainStringD !== undefined) {
+			items = searchSites(e.target.value, domainStringD);
+		}
+
+		top = items.slice(0, 10);
+		topObjects = [];
+		top.forEach((domain) => {
+			var matches = domain.match(/^.*[^.]/);
+			if (matches == null) {
+				var name = '';
+			} else {
+				name = matches[0];
+			}
+			var logo = `${domain}/favicon.ico`;
+			topObjects.push(new ResultObject(name, logo, domain, ''));
+		});
+	}
 </script>
 
-<style>
-  .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f4f4f8;
-    overflow: hidden;
-  }
-
-  .input-wrapper {
-    width: 400px;
-    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-  }
-
-  input {
-    width: 100%;
-    padding: 16px;
-    font-size: 18px;
-    border-radius: 25px;
-    border: 1px solid #ddd;
-    outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
-  }
-
-  input:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
-  }
-
-  .small {
-    transform: scale(0.85);
-  }
-</style>
-
-<div class="container" style="transform: translateY({$offsetY}px);">
-  <div class="input-wrapper" class:small={isFocused}>
-    <input
-      type="text"
-      placeholder="What are you willing to check ?"
-    />
-    <!-- on:focus={handleFocus} -->
-    <!-- on:blur={handleBlur} -->
-  </div>
+<div
+	class="flex justify-center items-center h-screen overflow-hidden"
+	style="transform: translateY({$offsetY}px);"
+>
+	<div
+		class={`w-96 transition-transform duration-400 ${isFocused ? 'scale-85' : ''} space-y-6`}
+		style="transition-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55);"
+	>
+		<input
+			type="text"
+			placeholder="What are you willing to check?"
+			on:focus={handleFocus}
+			on:blur={handleBlur}
+			class="w-full p-4 text-lg rounded-full border border-gray-300 outline-none transition duration-200 focus:border-blue-500 focus:shadow-md focus:shadow-blue-300/50
+      text-black"
+			on:input={handleInput}
+		/>
+		<div class="overflow-auto max-h-72 flex flex-col gap-4">
+			{#each topObjects as item}
+				<Resultcomponent result={item} />
+			{/each}
+		</div>
+	</div>
 </div>
-
