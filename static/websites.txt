@@ -7,6 +7,7 @@ instagram.com
 apple.com
 amazon.com
 reddit.com
+torrentgalaxy.to
 twitter.com
 cambridge.org
 pinterest.com
@@ -665,7 +666,6 @@ ihg.com
 expedia.ca
 housebeautiful.com
 choicehotels.com
-torrentgalaxy.to
 olivegarden.com
 aiscore.com
 tripadvisor.de
