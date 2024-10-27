@@ -121,7 +121,19 @@
         currentQuestion = 0;
         selectedOption = "";
         isQuizOver = false;
-        shuffledQuestions = shuffleArray([...questions]).slice(0, 10); // Shuffle and select 10 new questions
+        shuffledQuestions = shuffleArray([...questions]).slice(0, 10);
+    }
+
+    function getEndMessage() {
+        if (score <= 4) {
+            return "Wow, you suck at this. I won't be surprised if you got hacked!";
+        } else if (score <= 6) {
+            return "You barely passed. Good job you're doing the bare minimum.";
+        } else if (score <= 9) {
+            return "Wow! You would be hard to hack, but not impossible..";
+        } else {
+            return "Congrats, you aced the quiz. This is definitely not your first attempt.";
+        }
     }
 </script>
 
@@ -147,6 +159,7 @@
     {:else}
         <h2>Quiz Over!</h2>
         <p>Your score is: {score} / {shuffledQuestions.length}</p>
+        <p>{getEndMessage()}</p>
         <button on:click={resetQuiz}>Play Again</button>
     {/if}
 </main>
